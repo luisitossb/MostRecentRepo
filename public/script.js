@@ -8,7 +8,7 @@ let filteredData = [];
 
 async function fetchData() {
     try {
-        const response = await fetch('https://datavizbackendfromphp.onrender.com');
+        const response = await fetch('https://datavizbackendfromphp.onrender.com/data');
         const rawData = await response.json();
         allData = rawData;
         applyFilters();
