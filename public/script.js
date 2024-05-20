@@ -32,9 +32,12 @@ function parseCsvData(rawData, aspect) {
     }
 
     if (aspect === 'rating') {
+        const validRatings = ["G", "PG", "PG-13", "R", "NC-17", "TV-Y", "TV-Y7", "TV-G", "TV-PG", "TV-14", "TV-MA", "NR"];
         const groupedData = rawData.reduce((acc, record) => {
             const key = record.rating;
-            acc[key] = (acc[key] || 0) + 1;
+            if (validRatings.includes(key)) {
+                acc[key] = (acc[key] || 0) + 1;
+            }
             return acc;
         }, {});
 
@@ -61,6 +64,7 @@ function parseCsvData(rawData, aspect) {
 
     return { labels: [], values: [] };
 }
+
 
 function initializeChart(chartType, data) {
     const ctx = document.getElementById('chartCanvas').getContext('2d');
