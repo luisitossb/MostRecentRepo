@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Data Visualization</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+    <a href="profile.html">Profile</a>
+    <a href="about.html">About</a>
+  </nav>
+  <h1 class="curved-title">Data Visualization Dashboard</h1>
+  <p>Welcome to our interactive data visualization platform.</p>
+</header>
+<main>
+  <section id="visualization">
+    <h2>Visualization Title <button id="swapViewButton">Swap View</button></h2>
+    <div class="controls">
+      <label for="aspectSelect">Select Data Aspect:</label>
+      <select id="aspectSelect">
+        <option value="release_year">Release Year</option>
+        <option value="rating">Age Rating</option>
+        <option value="genre">Genre</option>
+      </select>
+    </div>
+    <div class="chart">
+      <div class="box">
+        <canvas id="chartCanvas" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </section>
+  <section id="details">
+    <h2>Details and Insights</h2>
+    <p>Here you can add additional details or insights about the data presented above.</p>
+  </section>
+</main>
+<footer>
+  <p>© 2024 Data Visualization Website. All rights reserved.</p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
