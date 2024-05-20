@@ -20,19 +20,27 @@
   <p>Welcome to our interactive data visualization platform.</p>
 </header>
 <main>
-  <section id="visualization">
-    <h2>Visualization Title <button id="swapViewButton">Swap View</button></h2>
-    <div class="controls">
-      <label for="aspectSelect">Select Data Aspect:</label>
-      <select id="aspectSelect">
-        <option value="release_year">Release Year</option>
-        <option value="rating">Age Rating</option>
-        <option value="genre">Genre</option>
-      </select>
-    </div>
+  <section id="releaseYearSection">
+    <h2>Release Year <button id="swapViewButtonReleaseYear">Swap View</button></h2>
     <div class="chart">
       <div class="box">
-        <canvas id="chartCanvas" width="400" height="400"></canvas>
+        <canvas id="chartCanvasReleaseYear" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </section>
+  <section id="genreSection">
+    <h2>Genre <button id="swapViewButtonGenre">Swap View</button></h2>
+    <div class="chart">
+      <div class="box">
+        <canvas id="chartCanvasGenre" width="400" height="400"></canvas>
+      </div>
+    </div>
+  </section>
+  <section id="ageRangeSection">
+    <h2>Age Range <button id="swapViewButtonAgeRange">Swap View</button></h2>
+    <div class="chart">
+      <div class="box">
+        <canvas id="chartCanvasAgeRange" width="400" height="400"></canvas>
       </div>
     </div>
   </section>
