@@ -1,4 +1,4 @@
-const chartTypes = ['line', 'bar', 'pie'];
+const chartTypes = ['line', 'bar', 'pie', 'radar'];
 let currentReleaseYearChartIndex = 0;
 let currentGenreChartIndex = 0;
 let currentAgeRangeChartIndex = 0;
@@ -79,6 +79,12 @@ function initializeChart(chartType, data, canvasId, aspect) {
         ]
     };
 
+    const radarColors = {
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        pointBackgroundColor: 'rgba(54, 162, 235, 1)'
+    };
+
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -93,7 +99,10 @@ function initializeChart(chartType, data, canvasId, aspect) {
             }
         },
         scales: chartType !== 'pie' ? {
-            x: {
+            x: chartType === 'radar' ? {
+                type: 'linear',
+                position: 'bottom'
+            } : {
                 ticks: {
                     autoSkip: chartType === 'line' && aspect === 'release_year',
                     maxTicksLimit: chartType === 'line' && aspect === 'release_year' ? Math.floor(Object.keys(data).length / 2) : undefined
@@ -107,7 +116,17 @@ function initializeChart(chartType, data, canvasId, aspect) {
 
     const newChart = new Chart(ctx, {
         type: chartType,
-        data: {
+        data: chartType === 'radar' ? {
+            labels: Object.keys(data),
+            datasets: [{
+                label: 'Ratings',
+                data: Object.values(data),
+                backgroundColor: radarColors.backgroundColor,
+                borderColor: radarColors.borderColor,
+                pointBackgroundColor: radarColors.pointBackgroundColor,
+                borderWidth: 1
+            }]
+        } : {
             labels: Object.keys(data),
             datasets: [{
                 label: 'Count',
