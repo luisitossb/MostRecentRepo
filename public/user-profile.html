@@ -25,6 +25,7 @@
         <p><strong>Favorite Genres:</strong> <span id="favoriteGenres">None</span></p>
         <p><strong>Content Type Preference:</strong> <span id="contentPreference">None</span></p>
         <p><strong>Preferred Movie Release Years:</strong> <span id="preferredReleaseYears">None</span></p>
+        <button id="signOutButton">Sign Out</button>
     </section>    
 </main>
 <footer>
@@ -37,7 +38,13 @@
     document.getElementById('favoriteGenres').textContent = userData.genres ? userData.genres.join(', ') : 'None';
     document.getElementById('contentPreference').textContent = userData.preference || 'None';
     document.getElementById('preferredReleaseYears').textContent = userData.releaseYear || 'None';
-});
+  });
+
+  document.getElementById('signOutButton').addEventListener('click', function() {
+    // Optionally, you can clear user data from localStorage here
+    localStorage.removeItem('userData');
+    window.location.href = 'profile.html';
+  });
 </script>
 </body>
 </html>
