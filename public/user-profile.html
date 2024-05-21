@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="user-profile.html">Profile</a>
+        <a href="about.html">About</a>
+    </nav>
+    <h1 class="curved-title">User Profile</h1>
+</header>
+<main>
+    <section id="profile">
+        <h2>Welcome, <span id="username">User</span></h2>
+        <h3>Your Preferences</h3>
+        <p><strong>Favorite Genres:</strong> <span id="favoriteGenres">None</span></p>
+        <p><strong>Content Type Preference:</strong> <span id="contentPreference">None</span></p>
+        <p><strong>Preferred Movie Release Years:</strong> <span id="preferredReleaseYears">None</span></p>
+    </section>    
+</main>
+<footer>
+    <p>© 2024 Data Visualization Website. All rights reserved.</p>
+</footer>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
+    document.getElementById('username').textContent = userData.username || 'User';
+    document.getElementById('favoriteGenres').textContent = userData.genres ? userData.genres.join(', ') : 'None';
+    document.getElementById('contentPreference').textContent = userData.preference || 'None';
+    document.getElementById('preferredReleaseYears').textContent = userData.releaseYear || 'None';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Preferences</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="profile.html">Profile</a>
+        <a href="about.html">About</a>
+    </nav>
+    <h1 class="curved-title">Profile Preferences</h1>
+</header>
+<main>
+    <section id="preferences">
+        <h2>Select Your Favorite Genres</h2>
+        <form id="preferencesForm">
+            <div>
+                <label>
+                    <input type="checkbox" name="genres" value="Action"> Action
+                </label>
+                <label>
+                    <input type="checkbox" name="genres" value="Comedy"> Comedy
+                </label>
+                <label>
+                    <input type="checkbox" name="genres" value="Drama"> Drama
+                </label>
+                <label>
+                    <input type="checkbox" name="genres" value="Horror"> Horror
+                </label>
+                <label>
+                    <input type="checkbox" name="genres" value="Romance"> Romance
+                </label>
+            </div>
+            <h2>Select Your Preference</h2>
+            <div>
+                <label>
+                    <input type="radio" name="preference" value="TV Shows" required> TV Shows
+                </label>
+                <label>
+                    <input type="radio" name="preference" value="Movies" required> Movies
+                </label>
+                <label>
+                    <input type="radio" name="preference" value="Both" required> Both
+                </label>
+            </div>
+            <h2>Select Your Preferred Movie Release Years</h2>
+        <div>
+                <label>
+        <input type="radio" name="releaseYear" value="1995-2000"> 1995-2000
+                </label>
+                <label>
+                        <input type="radio" name="releaseYear" value="2000-2005"> 2000-2005
+                </label>
+                <label>
+                        <input type="radio" name="releaseYear" value="2005-2010"> 2005-2010
+                </label>
+            </div>
+            <button type="submit">Save Preferences</button>
+        </form>
+        
+    </section>
+</main>
+<footer>
+    <p>© 2024 Data Visualization Website. All rights reserved.</p>
+</footer>
+<script>
+    document.getElementById('preferencesForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const selectedGenres = [];
+    document.querySelectorAll('input[name="genres"]:checked').forEach(checkbox => {
+        selectedGenres.push(checkbox.value);
+    });
+    const selectedPreference = document.querySelector('input[name="preference"]:checked').value;
+    const selectedReleaseYear = document.querySelector('input[name="releaseYear"]:checked').value;
+
+    // Store preferences in localStorage
+    localStorage.setItem('userData', JSON.stringify({
+        genres: selectedGenres,
+        preference: selectedPreference,
+        releaseYear: selectedReleaseYear
+    }));
+
+    console.log('Selected Genres:', selectedGenres);
+    console.log('Selected Preference:', selectedPreference);
+    console.log('Selected Release Year:', selectedReleaseYear);
+
+    alert('Preferences saved!');
+    window.location.href = 'user-profile.html';
+});
+
+</script>
+</body>
+</html>
