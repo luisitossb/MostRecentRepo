@@ -81,17 +81,13 @@
         const selectedPreference = document.querySelector('input[name="preference"]:checked').value;
         const selectedReleaseYear = document.querySelector('input[name="releaseYear"]:checked').value;
 
-        // Store preferences in localStorage
-        localStorage.setItem('userData', JSON.stringify({
-            genres: selectedGenres,
-            preference: selectedPreference,
-            releaseYear: selectedReleaseYear
-        }));
-        
-        console.log('Selected Genres:', selectedGenres);
-        console.log('Selected Preference:', selectedPreference);
-        console.log('Selected Release Year:', selectedReleaseYear);
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+        userData.genres = selectedGenres;
+        userData.preference = selectedPreference;
+        userData.releaseYear = selectedReleaseYear;
 
+        localStorage.setItem('userData', JSON.stringify(userData));
+        
         alert('Preferences saved!');
         window.location.href = 'user-profile.html';
     });
