@@ -1,2 +1,1 @@
-* Netflix Data Visualization by Barry, Ayman, and Luis
-* 
+** Netflix Data Visualization by Barry, Ayman, and Luis
