@@ -38,6 +38,13 @@
         // Handle form submission here, e.g., save data to backend
         window.location.href = 'profile_preferences.html';
     });
+    document.addEventListener('DOMContentLoaded', function() {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData && userData.genres && userData.preference && userData.releaseYear) {
+            window.location.href = 'user-profile.html';
+        }
+    });
+
 </script>
 </body>
 </html>
