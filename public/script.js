@@ -1,4 +1,4 @@
-const chartTypes = ['line', 'bar', 'pie', 'radar'];
+const chartTypes = ['line', 'bar', 'pie', 'radar', 'polarArea'];
 let currentReleaseYearChartIndex = 0;
 let currentGenreChartIndex = 0;
 let currentAgeRangeChartIndex = 0;
@@ -113,7 +113,7 @@ function initializeChart(chartType, data, canvasId, aspect) {
                 text: `Chart Type: ${chartType.charAt(0).toUpperCase() + chartType.slice(1)}`
             }
         },
-        scales: chartType !== 'pie' ? {
+        scales: chartType !== 'pie' && chartType !== 'polarArea' ? {
             x: chartType === 'radar' ? {
                 type: 'linear',
                 position: 'bottom'
@@ -131,13 +131,13 @@ function initializeChart(chartType, data, canvasId, aspect) {
 
     const newChart = new Chart(ctx, {
         type: chartType,
-        data: chartType === 'radar' ? {
+        data: chartType === 'radar' || chartType === 'polarArea' ? {
             labels: Object.keys(data),
             datasets: [{
-                label: 'Ratings',
+                label: chartType === 'radar' ? 'Ratings' : 'Count',
                 data: Object.values(data),
-                backgroundColor: radarColors.backgroundColor,
-                borderColor: radarColors.borderColor,
+                backgroundColor: chartType === 'polarArea' ? pieColors.backgroundColor : radarColors.backgroundColor,
+                borderColor: chartType === 'polarArea' ? pieColors.borderColor : radarColors.borderColor,
                 pointBackgroundColor: radarColors.pointBackgroundColor,
                 borderWidth: 1
             }]
