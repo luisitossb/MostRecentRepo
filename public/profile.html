@@ -25,7 +25,7 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password">
-            <button type="submit">Update Profile</button>
+            <button type="submit">Register</button>
         </form>
     </section>
 </main>
@@ -35,15 +35,19 @@
 <script>
     document.getElementById('profileForm').addEventListener('submit', function(event) {
         event.preventDefault();
+        const username = document.getElementById('username').value;
+        const userData = JSON.parse(localStorage.getItem('userData')) || {};
+        userData.username = username;
+        localStorage.setItem('userData', JSON.stringify(userData));
         window.location.href = 'profile_preferences.html';
     });
+
     document.addEventListener('DOMContentLoaded', function() {
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData && userData.genres && userData.preference && userData.releaseYear) {
             window.location.href = 'user-profile.html';
         }
     });
-
 </script>
 </body>
 </html>
