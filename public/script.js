@@ -5,6 +5,20 @@ let currentAgeRangeChartIndex = 0;
 let releaseYearChart, genreChart, ageRangeChart;
 let allData = [];
 
+// Load saved settings from localStorage
+function loadSettings() {
+    currentReleaseYearChartIndex = parseInt(localStorage.getItem('releaseYearChartIndex')) || 0;
+    currentGenreChartIndex = parseInt(localStorage.getItem('genreChartIndex')) || 0;
+    currentAgeRangeChartIndex = parseInt(localStorage.getItem('ageRangeChartIndex')) || 0;
+}
+
+// Save settings to localStorage
+function saveSettings() {
+    localStorage.setItem('releaseYearChartIndex', currentReleaseYearChartIndex);
+    localStorage.setItem('genreChartIndex', currentGenreChartIndex);
+    localStorage.setItem('ageRangeChartIndex', currentAgeRangeChartIndex);
+}
+
 async function fetchData() {
     try {
         const response = await fetch('https://datavizbackendfromphp.onrender.com/data'); // Update this to your backend URL
@@ -13,6 +27,7 @@ async function fetchData() {
         }
         const rawData = await response.json();
         allData = rawData;
+        loadSettings(); // Load settings before updating charts
         updateAllCharts();
     } catch (error) {
         console.error('Error fetching data:', error.message);
@@ -162,16 +177,19 @@ function updateAllCharts() {
 
 document.getElementById('swapViewButtonReleaseYear').addEventListener('click', function() {
     currentReleaseYearChartIndex = (currentReleaseYearChartIndex + 1) % chartTypes.length;
+    saveSettings(); // Save settings after changing view
     updateChart('release_year', 'chartCanvasReleaseYear', currentReleaseYearChartIndex);
 });
 
 document.getElementById('swapViewButtonGenre').addEventListener('click', function() {
     currentGenreChartIndex = (currentGenreChartIndex + 1) % chartTypes.length;
+    saveSettings(); // Save settings after changing view
     updateChart('genre', 'chartCanvasGenre', currentGenreChartIndex);
 });
 
 document.getElementById('swapViewButtonAgeRange').addEventListener('click', function() {
     currentAgeRangeChartIndex = (currentAgeRangeChartIndex + 1) % chartTypes.length;
+    saveSettings(); // Save settings after changing view
     updateChart('rating', 'chartCanvasAgeRange', currentAgeRangeChartIndex);
 });
 
