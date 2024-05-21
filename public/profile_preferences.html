@@ -54,13 +54,13 @@
             <h2>Select Your Preferred Movie Release Years</h2>
         <div>
                 <label>
-        <input type="radio" name="releaseYear" value="1995-2000"> 1995-2000
+                    <input type="radio" name="releaseYear" value="1995-2000"> 1995-2000
                 </label>
                 <label>
-                        <input type="radio" name="releaseYear" value="2000-2005"> 2000-2005
+                    <input type="radio" name="releaseYear" value="2000-2005"> 2000-2005
                 </label>
                 <label>
-                        <input type="radio" name="releaseYear" value="2005-2010"> 2005-2010
+                    <input type="radio" name="releaseYear" value="2005-2010"> 2005-2010
                 </label>
             </div>
             <button type="submit">Save Preferences</button>
@@ -73,29 +73,28 @@
 </footer>
 <script>
     document.getElementById('preferencesForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const selectedGenres = [];
-    document.querySelectorAll('input[name="genres"]:checked').forEach(checkbox => {
-        selectedGenres.push(checkbox.value);
+        event.preventDefault();
+        const selectedGenres = [];
+        document.querySelectorAll('input[name="genres"]:checked').forEach(checkbox => {
+            selectedGenres.push(checkbox.value);
+        });
+        const selectedPreference = document.querySelector('input[name="preference"]:checked').value;
+        const selectedReleaseYear = document.querySelector('input[name="releaseYear"]:checked').value;
+
+        // Store preferences in localStorage
+        localStorage.setItem('userData', JSON.stringify({
+            genres: selectedGenres,
+            preference: selectedPreference,
+            releaseYear: selectedReleaseYear
+        }));
+        
+        console.log('Selected Genres:', selectedGenres);
+        console.log('Selected Preference:', selectedPreference);
+        console.log('Selected Release Year:', selectedReleaseYear);
+
+        alert('Preferences saved!');
+        window.location.href = 'user-profile.html';
     });
-    const selectedPreference = document.querySelector('input[name="preference"]:checked').value;
-    const selectedReleaseYear = document.querySelector('input[name="releaseYear"]:checked').value;
-
-    // Store preferences in localStorage
-    localStorage.setItem('userData', JSON.stringify({
-        genres: selectedGenres,
-        preference: selectedPreference,
-        releaseYear: selectedReleaseYear
-    }));
-    
-    console.log('Selected Genres:', selectedGenres);
-    console.log('Selected Preference:', selectedPreference);
-    console.log('Selected Release Year:', selectedReleaseYear);
-
-    alert('Preferences saved!');
-    window.location.href = 'user-profile.html';
-});
-
 </script>
 </body>
 </html>
