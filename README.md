@@ -1,10 +1,10 @@
 # Netflix Data Visualization Dashboard
 
 ## Repository Link
-- [GitHub Repository](https://github.com/your-username/netflix-data-visualization)
+- [GitHub Repository](https://github.com/luisitossb/MostRecentRepo/tree/main)
 
 ## Render Link
-- [Live Demo](https://your-render-link.com)
+- [Live Demo]([https://your-render-link.com](https://mostrecentrepo.onrender.com))
 
 ## Key Learnings
 - **Frontend Development**:
