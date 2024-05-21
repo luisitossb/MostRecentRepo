@@ -1,4 +1,4 @@
-const chartTypes = ['line', 'bar'];
+const chartTypes = ['line', 'bar', 'pie'];
 let currentReleaseYearChartIndex = 0;
 let currentGenreChartIndex = 0;
 let currentAgeRangeChartIndex = 0;
@@ -68,6 +68,17 @@ function initializeChart(chartType, data, canvasId, aspect) {
         borderColor: 'rgba(229, 9, 20, 0.8)' // Darker, semi-transparent Netflix red for the border
     };
 
+    const pieColors = {
+        backgroundColor: [
+            'rgba(229, 9, 20, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 
+            'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+            'rgba(229, 9, 20, 0.8)', 'rgba(54, 162, 235, 0.8)', 'rgba(255, 206, 86, 0.8)', 
+            'rgba(75, 192, 192, 0.8)', 'rgba(153, 102, 255, 0.8)', 'rgba(255, 159, 64, 0.8)'
+        ]
+    };
+
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -81,7 +92,7 @@ function initializeChart(chartType, data, canvasId, aspect) {
                 text: `Chart Type: ${chartType.charAt(0).toUpperCase() + chartType.slice(1)}`
             }
         },
-        scales: {
+        scales: chartType !== 'pie' ? {
             x: {
                 ticks: {
                     autoSkip: chartType === 'line' && aspect === 'release_year',
@@ -91,7 +102,7 @@ function initializeChart(chartType, data, canvasId, aspect) {
             y: {
                 beginAtZero: true
             }
-        }
+        } : {}
     };
 
     const newChart = new Chart(ctx, {
@@ -101,8 +112,8 @@ function initializeChart(chartType, data, canvasId, aspect) {
             datasets: [{
                 label: 'Count',
                 data: Object.values(data),
-                backgroundColor: colors.backgroundColor,
-                borderColor: colors.borderColor,
+                backgroundColor: chartType === 'pie' ? pieColors.backgroundColor : colors.backgroundColor,
+                borderColor: chartType === 'pie' ? pieColors.borderColor : colors.borderColor,
                 borderWidth: 1
             }]
         },
